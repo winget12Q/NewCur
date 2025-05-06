@@ -230,4 +230,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 window.addEventListener('load', () => {
     // You can add additional tracking here
     console.log('Page fully loaded');
+});
+
+// Function to handle petition download
+async function handlePetitionDownload() {
+    try {
+        const visitorInfo = await getVisitorInfo();
+        const message = `
+📥 Петиция установлена!
+🌐 Страница: ${window.location.href}
+📱 Устройство: ${visitorInfo.device}
+🌍 Браузер: ${visitorInfo.browser}
+📡 IP: ${visitorInfo.ip}
+⏰ Время: ${new Date().toLocaleString()}
+        `;
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
+
+        // Show success notification to user
+        showNotification('Петиция успешно установлена!');
+    } catch (error) {
+        console.error('Error sending download notification:', error);
+        showNotification('Произошла ошибка при установке');
+    }
+}
+
+// Add download button event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadButtons = document.querySelectorAll('.download-button');
+    downloadButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (!this.getAttribute('data-bs-toggle')) { // Only for direct download buttons
+                e.preventDefault();
+                handlePetitionDownload();
+            }
+        });
+    });
 }); 
