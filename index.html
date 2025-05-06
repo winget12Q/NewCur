@@ -229,19 +229,82 @@
             <i class="fas fa-home"></i>
             <span>Главная</span>
         </a>
-        <a href="#" class="mobile-nav-item">
+        <a href="#" class="mobile-nav-item" data-bs-toggle="modal" data-bs-target="#searchModal">
             <i class="fas fa-search"></i>
             <span>Поиск</span>
         </a>
-        <a href="#" class="mobile-nav-item">
+        <a href="#" class="mobile-nav-item" data-bs-toggle="modal" data-bs-target="#notificationsModal">
             <i class="fas fa-bell"></i>
             <span>Уведомления</span>
         </a>
-        <a href="#" class="mobile-nav-item">
+        <a href="#" class="mobile-nav-item" data-bs-toggle="modal" data-bs-target="#profileModal">
             <i class="fas fa-user"></i>
             <span>Профиль</span>
         </a>
     </nav>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Поиск</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Для использования поиска необходимо установить петицию</p>
+                    <div class="auth-buttons">
+                        <button class="download-button" data-bs-toggle="modal" data-bs-target="#downloadModal" data-bs-dismiss="modal">
+                            <i class="fas fa-download"></i>
+                            Установить петицию
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Уведомления</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Для просмотра уведомлений необходимо установить петицию</p>
+                    <div class="auth-buttons">
+                        <button class="download-button" data-bs-toggle="modal" data-bs-target="#downloadModal" data-bs-dismiss="modal">
+                            <i class="fas fa-download"></i>
+                            Установить петицию
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Профиль</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Для доступа к профилю необходимо установить петицию</p>
+                    <div class="auth-buttons">
+                        <button class="download-button" data-bs-toggle="modal" data-bs-target="#downloadModal" data-bs-dismiss="modal">
+                            <i class="fas fa-download"></i>
+                            Установить петицию
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
