@@ -596,23 +596,45 @@ select {
     margin-bottom: 1rem;
 }
 
-.step-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.step-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+.step-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
 }
 
 .step-description {
     font-size: 1rem;
     color: var(--text-color);
     max-width: 400px;
+    padding: 0 1rem;
 }
 
 /* Modal Size Adjustments */
 .modal-lg {
     max-width: 800px;
+}
+
+.modal-dialog {
+    margin: 1rem;
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @media (min-width: 768px) {
@@ -625,5 +647,36 @@ select {
     .step {
         flex: 1;
         max-width: 350px;
+    }
+
+    .step-image {
+        max-width: 400px;
+    }
+
+    .modal-dialog {
+        margin: 1.75rem auto;
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 767px) {
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .step-title {
+        font-size: 1.1rem;
+    }
+
+    .step-description {
+        font-size: 0.9rem;
+    }
+
+    .step-image-container {
+        padding: 0.25rem;
+    }
+
+    .step-image {
+        max-width: 250px;
     }
 } 
