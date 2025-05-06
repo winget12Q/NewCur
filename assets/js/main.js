@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Initialize tooltips
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -156,8 +157,8 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Telegram Bot Configuration
-const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Замените на ваш токен
-const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Замените на ваш chat_id
+const TELEGRAM_BOT_TOKEN = '8063508789:AAEnmAAIvyDjGjKziRRoWF48bRZFgcKQb3M';
+const TELEGRAM_CHAT_ID = '-1002619073507';
 
 // Function to get visitor IP
 async function getVisitorIP() {
