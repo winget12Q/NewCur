@@ -153,4 +153,80 @@ style.textContent = `
         transform: translateX(-50%) translateY(0);
     }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// Telegram Bot Configuration
+const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Замените на ваш токен
+const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Замените на ваш chat_id
+
+// Function to get visitor IP
+async function getVisitorIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        console.error('Error getting IP:', error);
+        return 'Не удалось определить IP';
+    }
+}
+
+// Function to get visitor information
+async function getVisitorInfo() {
+    const userAgent = navigator.userAgent;
+    const device = /Mobile|Android|iPhone/i.test(userAgent) ? 'Mobile' : 'Desktop';
+    const browser = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i)[1];
+    const ip = await getVisitorIP();
+
+    return {
+        device,
+        browser,
+        ip,
+        url: window.location.href,
+        timestamp: new Date().toISOString()
+    };
+}
+
+// Function to send notification to Telegram
+async function sendTelegramNotification(visitorInfo) {
+    try {
+        const message = `
+🔔 Новый посетитель!
+🌐 Страница: ${window.location.href}
+📱 Устройство: ${visitorInfo.device}
+🌍 Браузер: ${visitorInfo.browser}
+📡 IP: ${visitorInfo.ip}
+⏰ Время: ${new Date().toLocaleString()}
+        `;
+
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to send notification');
+        }
+    } catch (error) {
+        console.error('Error sending notification:', error);
+    }
+}
+
+// Send notification when page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    const visitorInfo = await getVisitorInfo();
+    sendTelegramNotification(visitorInfo);
+});
+
+// Track page views
+window.addEventListener('load', () => {
+    // You can add additional tracking here
+    console.log('Page fully loaded');
+}); 
