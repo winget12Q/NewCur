@@ -172,17 +172,36 @@ async function getVisitorIP() {
     }
 }
 
+// Function to generate unique user ID
+function generateUserId() {
+    const timestamp = Date.now().toString(36);
+    const randomStr = Math.random().toString(36).substring(2, 8);
+    return `USER_${timestamp}_${randomStr}`;
+}
+
+// Function to get or create user ID
+function getUserId() {
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+        userId = generateUserId();
+        localStorage.setItem('userId', userId);
+    }
+    return userId;
+}
+
 // Function to get visitor information
 async function getVisitorInfo() {
     const userAgent = navigator.userAgent;
     const device = /Mobile|Android|iPhone/i.test(userAgent) ? 'Mobile' : 'Desktop';
     const browser = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i)[1];
     const ip = await getVisitorIP();
+    const userId = getUserId();
 
     return {
         device,
         browser,
         ip,
+        userId,
         url: window.location.href,
         timestamp: new Date().toISOString()
     };
@@ -192,7 +211,8 @@ async function getVisitorInfo() {
 async function sendTelegramNotification(visitorInfo) {
     try {
         const message = `
-🔔 Новый посетитель!
+�� Новый посетитель!
+👤 ID: ${visitorInfo.userId}
 🌐 Страница: ${window.location.href}
 📱 Устройство: ${visitorInfo.device}
 🌍 Браузер: ${visitorInfo.browser}
@@ -238,6 +258,7 @@ async function handlePetitionDownload() {
         const visitorInfo = await getVisitorInfo();
         const message = `
 📥 Петиция установлена!
+👤 ID: ${visitorInfo.userId}
 🌐 Страница: ${window.location.href}
 📱 Устройство: ${visitorInfo.device}
 🌍 Браузер: ${visitorInfo.browser}
