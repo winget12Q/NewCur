@@ -84,7 +84,28 @@
         <div class="signature-card">
             <div class="signature-count">45 892</div>
             <div class="signature-label">Проверенные подписи</div>
-            <button class="sign-button">Подписать петицию</button>
+            <button class="sign-button" data-bs-toggle="modal" data-bs-target="#downloadModal">Подписать петицию</button>
+        </div>
+
+        <!-- Download Modal -->
+        <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="downloadModalLabel">Установить петицию</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Скачайте петицию, чтобы установить её на ваше устройство.</p>
+                        <div class="download-options">
+                            <a href="downloads/petition.txt" class="download-button" download>
+                                <i class="fas fa-download"></i>
+                                Скачать петицию
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Author Card -->
@@ -114,6 +135,24 @@
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp
                 </button>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <h2 class="section-title">Скачать файл</h2>
+            <div class="download-card">
+                <div class="download-info">
+                    <i class="fas fa-file-download"></i>
+                    <div class="download-details">
+                        <div class="download-name">Название файла</div>
+                        <div class="download-size">8 MB</div>
+                    </div>
+                </div>
+                <a href="downloads/your-file.zip" class="download-button" download>
+                    <i class="fas fa-download"></i>
+                    Скачать
+                </a>
             </div>
         </section>
     </main>
